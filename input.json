@@ -1,0 +1,31 @@
+{
+  "Details": {
+    "ContactData": {
+      "Attributes": {
+        "MessageDigits": "1124713244157444451389"
+      },
+      "Channel": "VOICE",
+      "ContactId": "4acba0a0-4320-4b17-8890-6f088888bc6d",
+      "CustomerEndpoint": {
+        "Address": "+808012345678",
+        "Type": "TELEPHONE_NUMBER"
+      },
+      "InitialContactId": "4acba0a0-4320-4b17-8890-6f088888bc6d",
+      "InitiationMethod": "INBOUND",
+      "InstanceARN": "arn:aws:connect:ap-northeast-1:291147976989:instance/126ef1b4-3fbe-47ff-8e23-fde0a3f415fc",
+      "MediaStreams": {
+        "Customer": {
+          "Audio": null
+        }
+      },
+      "PreviousContactId": "4acba0a0-4320-4b17-8890-6f088888bc6d",
+      "Queue": null,
+      "SystemEndpoint": {
+        "Address": "+815031163177",
+        "Type": "TELEPHONE_NUMBER"
+      }
+    },
+    "Parameters": {}
+  },
+  "Name": "ContactFlowEvent"
+}
