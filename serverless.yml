@@ -96,8 +96,10 @@ functions:
 #            path: /hello
 
 #    Define function environment variables here
-#    environment:
-#      variable2: value2
+    environment:
+#      SNS_TOPIC: arn:aws:sns:ap-northeast-1:123456789012:pager
+#      SLACK_WEBHOOK_URL: https://hooks.slack.com/services/123456789/123456789/012345678901234567890123
+      SLACK_WEBHOOK_URL: ${file(./config.${self:provider.stage}.json):SLACK_WEBHOOK_URL}
 
 # you can add CloudFormation resource templates here
 #resources:

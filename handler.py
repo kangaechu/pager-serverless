@@ -1,7 +1,20 @@
 import json
+import os
+import boto3
+import requests
+
+sns = boto3.client('sns')
+
 
 def encode(event, context):
     message_digits = event['Details']['ContactData']['Attributes']['MessageDigits']
+    print("message_digits:", message_digits)
+    message_text = encode_pager(message_digits)
+    print("message text:", message_text)
+
+    # publish_sns_topic(os.environ['SNS_TOPIC'], message_text, '')
+    webhook_url = os.environ['SLACK_WEBHOOK_URL']
+    send_slack(message_text, webhook_url)
     body = {
         "messageText": encode_pager(message_digits),
         "messageDigits": message_digits
@@ -28,6 +41,26 @@ def encode_pager(message_digits):
     }
     it = iter(message_digits)
     return "".join([pager_table[i + next(it)] for i in it])
+
+
+def publish_sns_topic(topic_arn, message, subject):
+    request = {
+        'TopicArn': topic_arn,
+        'Message': message,
+        'Subject': subject
+    }
+    response = sns.publish(**request)
+    return response
+
+
+def send_slack(message, webhook_url):
+    payload = {
+        "text": message,
+    }
+
+    data = json.dumps(payload)
+
+    requests.post(webhook_url, data)
 
 
 if __name__ == "__main__":
